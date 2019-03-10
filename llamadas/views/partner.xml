@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+    <!--Formulario que se añadira al fondo de la pestaña contactos pues está anidado-->
+    <record model="ir.ui.view" id="partner_incidente_form_view">
+            <field name="name">partner.incidente</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="incidencias realizados">
+                        <group>
+                            <field name="incidente"/>
+                            <field name="incidencia_ids"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    <!--Lista de las incidencisa-->
+    <record model="ir.actions.act_window" id="contact_list_action">
+            <field name="name">Contacts</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!--Se añade la pestaña al menu superior-->
+        <menuitem id="configuration_menu" name="Configuration" parent="main_llamadas_menu"/>
+        <menuitem id="contact_menu" name="Incidentes" parent="configuration_menu" action="contact_list_action"/>
+   </data>
+</odoo>

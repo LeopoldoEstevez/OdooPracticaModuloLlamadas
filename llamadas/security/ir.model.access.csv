@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_llamadas_llamadas,llamadas.llamadas,model_llamadas_llamada,,1,1,1,1
+access_llamadas_incidencias,llamadas.incidencias,model_llamadas_incidencia,,1,1,1,1

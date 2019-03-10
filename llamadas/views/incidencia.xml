@@ -1,0 +1,64 @@
+<odoo>
+    <data>
+        <!--Listado de las incidencias cuando no estamos editando nada-->
+        <record model="ir.ui.view" id="incidencia_tree_view">
+            <field name="name">incidencia.tree</field>
+            <field name="model">llamadas.incidencia</field>
+            <field name="arch" type="xml">
+                <tree string="Incidencia Tree">
+                    <field name="titulo"/>
+                    <field name="causa"/>
+                    <field name="encargado"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="incidencias_list_action">
+            <field name="name">Incidencias</field>
+            <field name="res_model">llamadas.incidencia</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--Añadimos la pestaña de incidencias al menu superior-->
+        <menuitem id="incidencias_menu" name="Incidencias" parent="contactar_menu" action="incidencias_list_action"/>
+
+        <!--Formulario de incidencias cuando editamos-->
+        <record model="ir.ui.view" id="incidencia_form_view">
+            <field name="name">incidencia.form</field>
+            <!--Modelo-->
+            <field name="model">llamadas.incidencia</field>
+            <field name="arch" type="xml">
+                <form string="Formulario de Incidencias">
+                    <sheet>
+                        <group>
+                            <!--Campos que queremos -->
+                            <field name="titulo"/>
+                            <field name="fecha"/>
+                            <field name="causa"/>
+                            <field name="encargado"/>
+                            <label for="incidentes_ids"/>
+                            <field name="incidentes_ids"/>
+                        </group>
+                        <notebook>
+                            <page string="Descripcion">
+                                <field name="causa"/>
+>
+                            </page>
+                                <!--Pestaña de llamadas de la incidencia donde anidamos campos del modelo llamada-->
+                            <page string="llamadas">
+                                <field name="llamadas_ids">
+                                    <tree string="Llamadas de la incidencia">
+                                        <field name="motivo"/>
+                                        <field name="notas"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
